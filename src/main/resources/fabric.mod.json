@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "tummm",
+  "version": "${version}",
+
+  "name": "The Ultimate Minecraft Magic Mod",
+  "description": "This is Group 66 mod for minecraft",
+  "authors": [
+    "Thomas Quick"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/OTomHD/208Group66"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/tummm/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.group66.tummm.MainTummm"
+    ]
+  },
+  "mixins": [
+    "tummm.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
