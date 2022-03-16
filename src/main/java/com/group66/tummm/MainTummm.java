@@ -1,5 +1,6 @@
 package com.group66.tummm;
 
+import com.group66.tummm.blocks.tummmBlocks;
 import com.group66.tummm.items.tummmItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ public class MainTummm implements ModInitializer {
 		LOGGER.info("Tummm Mod starting...");
 		//REGISTERS
 		tummmItems.registerModItems();
+		tummmBlocks.registerModBlocks();
 		LOGGER.info("Tummm Mod Finished!");
 	}
 }

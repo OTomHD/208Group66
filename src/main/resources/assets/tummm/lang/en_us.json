@@ -1,4 +1,9 @@
 {
   "itemGroup.tummm.main" : "Main Tummm Tab",
-  "item.tummm.mana_crystal" : "Mana Crystal"
+  "item.tummm.mana_crystal" : "Mana Crystal",
+  "item.tummm.platinum_ingot" : "Platinum Ingot",
+  "item.tummm.platinum_nugget" : "Platinum Nugget",
+
+
+  "block.tummm.platinum_ore" : "Platinum Ore"
 }
