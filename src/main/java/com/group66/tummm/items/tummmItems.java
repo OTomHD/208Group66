@@ -13,7 +13,7 @@ public class tummmItems {
 
     public static final Item MANA_CRYSYTAL = registerItem
             ("mana_crystal",
-                    new Item(new FabricItemSettings().group(tummmItemPages.MAIN).fireproof().maxCount(1)));
+                    new Item(new FabricItemSettings().group(tummmItemPages.MAIN).fireproof().maxCount(1).maxDamage(300)));
 
     public static final Item PLATINUM_INGOT = registerItem("platinum_ingot",
             new Item(new FabricItemSettings().group(tummmItemPages.MAIN)));
