@@ -17,7 +17,16 @@ import net.minecraft.util.registry.Registry;
 public class tummmBlocks {
 
     public static final Block PLATINUM_ORE = registerBlock("platinum_ore",
-            new Block(FabricBlockSettings.of(Material.STONE).strength(6f).requiresTool()), tummmItemPages.MAIN);
+            new Block(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool()), tummmItemPages.MAIN);
+
+    public static final Block DEEPSLATE_PLATINUM = registerBlock("deepslate_platinum",
+            new Block(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool()), tummmItemPages.MAIN);
+
+    public static final Block MAGIC_ORE = registerBlock("magic_ore",
+            new Block(FabricBlockSettings.of(Material.STONE).strength(2f).requiresTool()), tummmItemPages.MAIN);
+
+    public static final Block DEEPSLATE_MAGIC = registerBlock("deepslate_magic",
+            new Block(FabricBlockSettings.of(Material.STONE).strength(2f).requiresTool()), tummmItemPages.MAIN);
 
     private static Block registerBlock(String name, Block block, ItemGroup group){
         registerBlockItem(name, block, group);

@@ -21,6 +21,12 @@ public class tummmItems {
     public static final Item PLATINUM_NUGGET = registerItem("platinum_nugget",
             new Item(new FabricItemSettings().group(tummmItemPages.MAIN)));
 
+    public static final Item INFUSED_DIAMOND = registerItem("infused_diamond",
+            new Item(new FabricItemSettings().group(tummmItemPages.MAIN)));
+
+    public static final Item MANA_DUST = registerItem("mana_dust",
+            new Item(new FabricItemSettings().group(tummmItemPages.MAIN)));
+
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registry.ITEM, new Identifier(MainTummm.MODID, name),item);

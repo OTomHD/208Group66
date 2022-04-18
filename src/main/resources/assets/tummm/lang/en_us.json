@@ -1,9 +1,14 @@
 {
   "itemGroup.tummm.main" : "Main Tummm Tab",
   "item.tummm.mana_crystal" : "Mana Crystal",
+  "item.tummm.mana_dust" : "Mana Dust",
   "item.tummm.platinum_ingot" : "Platinum Ingot",
   "item.tummm.platinum_nugget" : "Platinum Nugget",
+  "item.tummm.infused_diamond" : "Infused Diamond",
 
 
-  "block.tummm.platinum_ore" : "Platinum Ore"
+  "block.tummm.platinum_ore" : "Platinum Ore",
+  "block.tummm.deepslate_platinum" : "Deepslate Platinum Ore",
+  "block.tummm.magic_ore" : "Magic Ore",
+  "block.tummm.deepslate_magic" : "Deepslate Magic Ore"
 }

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+
+  "ingredient": {
+    "item": "tummm:platinum_ore"
+  },
+  "result": "tummm:platinum_ingot",
+  "experience": 0.5,
+  "cookingtime": 300
+}

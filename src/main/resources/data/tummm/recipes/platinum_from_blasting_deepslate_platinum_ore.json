@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "tummm:deepslate_platinum"
+  },
+  "result": "tummm:platinum_ingot",
+  "experience": 0.5,
+  "cookingtime": 150
+}
