@@ -21,6 +21,10 @@ public class tummmItems {
     public static final Item PLATINUM_NUGGET = registerItem("platinum_nugget",
             new Item(new FabricItemSettings().group(tummmItemPages.MAIN)));
 
+    public static final Item RAW_PLATINUM = registerItem("raw_platinum",
+            new Item(new FabricItemSettings().group(tummmItemPages.MAIN)));
+
+
     public static final Item INFUSED_DIAMOND = registerItem("infused_diamond",
             new Item(new FabricItemSettings().group(tummmItemPages.MAIN)));
 
