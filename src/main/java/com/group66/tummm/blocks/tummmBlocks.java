@@ -38,7 +38,6 @@ public class tummmBlocks {
                 new BlockItem(block, new FabricItemSettings().group(group)));
     }
     public static void registerModBlocks() {
-
         MainTummm.LOGGER.info("Registering tummm blocks for" + MainTummm.MODID);
     }
 }
