@@ -1,9 +1,7 @@
 package com.group66.tummm.items;
 
 import com.group66.tummm.MainTummm;
-import com.group66.tummm.items.custom.tummmAxeItem;
-import com.group66.tummm.items.custom.tummmHoeItem;
-import com.group66.tummm.items.custom.tummmPickaxeItem;
+import com.group66.tummm.items.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.*;
 
@@ -46,11 +44,11 @@ public class tummmItems {
                     new FabricItemSettings().group(tummmItemPages.MAIN)));
 
     public static final Item PLATINUM_SHOVEL = registerItem("platinum_shovel",
-            new ShovelItem(tummmToolMaterials.PLATINUM, 1,1f,
+            new tummmShovelItem(tummmToolMaterials.PLATINUM, 1,1f,
                     new FabricItemSettings().group(tummmItemPages.MAIN)));
 
     public static final Item PLATINUM_SWORD = registerItem("platinum_sword",
-            new SwordItem(tummmToolMaterials.PLATINUM, 2,2f,
+            new tummmSwordItem(tummmToolMaterials.PLATINUM, 2,2f,
                     new FabricItemSettings().group(tummmItemPages.MAIN)));
 
     private static Item registerItem(String name, Item item){
