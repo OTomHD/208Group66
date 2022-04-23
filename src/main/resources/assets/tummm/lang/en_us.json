@@ -35,5 +35,6 @@
   "block.tummm.platinum_ore" : "Platinum Ore",
   "block.tummm.deepslate_platinum" : "Deepslate Platinum Ore",
   "block.tummm.magic_ore" : "Magic Ore",
-  "block.tummm.deepslate_magic" : "Deepslate Magic Ore"
+  "block.tummm.deepslate_magic" : "Deepslate Magic Ore",
+  "block.tummm.ritual_core" : "Ritual Core"
 }

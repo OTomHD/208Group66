@@ -28,6 +28,9 @@ public class tummmBlocks {
     public static final Block DEEPSLATE_MAGIC = registerBlock("deepslate_magic",
             new Block(FabricBlockSettings.of(Material.STONE).strength(2f).requiresTool()), tummmItemPages.BLOCKS);
 
+    public static final Block RITUAL_CORE = registerBlock("ritual_core",
+            new ritual_core(FabricBlockSettings.of(Material.METAL).strength(6f).requiresTool()), tummmItemPages.BLOCKS);
+
     private static Block registerBlock(String name, Block block, ItemGroup group){
         registerBlockItem(name, block, group);
         return Registry.register(Registry.BLOCK, new Identifier(MainTummm.MODID, name), block);
