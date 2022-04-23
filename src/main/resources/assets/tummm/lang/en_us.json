@@ -1,13 +1,6 @@
 {
-  "itemGroup.tummm.blocks" : "Tummm Blocks",
-  "itemGroup.tummm.items" : "Tummm Items",
-  "itemGroup.tummm.tools" : "Tummm Tools",
-  "itemGroup.tummm.crystals" : "Tummm Crystals",
-
+  "itemGroup.tummm.main" : "Main Tummm Tab",
   "item.tummm.mana_crystal" : "Mana Crystal",
-  "item.tummm.mana_crystal_lvl2" : "Mana Crystal",
-  "item.tummm.mana_crystal_lvl3" : "Mana Crystal",
-  
   "item.tummm.mana_dust" : "Mana Dust",
   "item.tummm.platinum_ingot" : "Platinum Ingot",
   "item.tummm.platinum_nugget" : "Platinum Nugget",
@@ -24,6 +17,8 @@
   "item.tummm.platinum_chestplate": "Platinum Chestplate",
   "item.tummm.platinum_leggins": "Platinum Leggins",
   "item.tummm.platinum_boots": "Platinum Boots",
+
+  "item.tummm.platinum_scanner": "Platinum Scanner",
 
   "item.tummm.void_wand": "Void Wand",
   "item.tummm.cloak_wand": "Cloaking Wand",

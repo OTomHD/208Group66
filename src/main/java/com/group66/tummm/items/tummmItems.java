@@ -71,7 +71,7 @@ public class tummmItems {
                     new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
     public static final Item PLATINUM_SWORD = registerItem("platinum_sword",
-            new tummmSwordItem(tummmToolMaterials.PLATINUM, 2,2f,
+            new tummmSwordItem(tummmToolMaterials.PLATINUM, 2,1.5f,
                     new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
     public static final Item PLATINUM_HELMET = registerItem("platinum_helmet",
@@ -87,6 +87,9 @@ public class tummmItems {
             new ArmorItem(ModArmorMaterials.PLATINUM, EquipmentSlot.FEET,
                     new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
+
+    public static final Item PLATINUM_SCANNER = registerItem("platinum_scanner",
+            new PlatinumScanner(new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registry.ITEM, new Identifier(MainTummm.MODID, name),item);
