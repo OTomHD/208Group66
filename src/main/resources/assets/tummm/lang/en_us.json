@@ -1,6 +1,13 @@
 {
-  "itemGroup.tummm.main" : "Main Tummm Tab",
+  "itemGroup.tummm.blocks" : "Tummm Blocks",
+  "itemGroup.tummm.items" : "Tummm Items",
+  "itemGroup.tummm.tools" : "Tummm Tools",
+  "itemGroup.tummm.crystals" : "Tummm Crystals",
+
   "item.tummm.mana_crystal" : "Mana Crystal",
+  "item.tummm.mana_crystal_lvl2" : "Mana Crystal",
+  "item.tummm.mana_crystal_lvl3" : "Mana Crystal",
+
   "item.tummm.mana_dust" : "Mana Dust",
   "item.tummm.platinum_ingot" : "Platinum Ingot",
   "item.tummm.platinum_nugget" : "Platinum Nugget",
@@ -36,5 +43,7 @@
   "block.tummm.deepslate_platinum" : "Deepslate Platinum Ore",
   "block.tummm.magic_ore" : "Magic Ore",
   "block.tummm.deepslate_magic" : "Deepslate Magic Ore",
+
+  "item.tummm.magic_page": "Magic Page",
   "block.tummm.ritual_core" : "Ritual Core"
 }

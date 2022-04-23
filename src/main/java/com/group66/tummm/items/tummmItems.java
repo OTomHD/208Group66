@@ -91,6 +91,9 @@ public class tummmItems {
     public static final Item PLATINUM_SCANNER = registerItem("platinum_scanner",
             new PlatinumScanner(new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
+    public static final Item MAGIC_PAGE = registerItem("magic_page",
+            new Item(new FabricItemSettings().group(ItemGroup.MISC)));
+
     private static Item registerItem(String name, Item item){
         return Registry.register(Registry.ITEM, new Identifier(MainTummm.MODID, name),item);
     }
