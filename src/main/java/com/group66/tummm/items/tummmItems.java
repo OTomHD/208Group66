@@ -4,6 +4,7 @@ import com.group66.tummm.MainTummm;
 import com.group66.tummm.items.custom.*;
 import com.group66.tummm.items.custom.wands.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 
 import net.minecraft.util.Identifier;
@@ -72,6 +73,20 @@ public class tummmItems {
     public static final Item PLATINUM_SWORD = registerItem("platinum_sword",
             new tummmSwordItem(tummmToolMaterials.PLATINUM, 2,2f,
                     new FabricItemSettings().group(tummmItemPages.TOOLS)));
+
+    public static final Item PLATINUM_HELMET = registerItem("platinum_helmet",
+            new ArmorItem(ModArmorMaterials.PLATINUM, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(tummmItemPages.TOOLS)));
+    public static final Item PLATINUM_CHESTPLATE = registerItem("platinum_chestplate",
+            new ArmorItem(ModArmorMaterials.PLATINUM, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(tummmItemPages.TOOLS)));
+    public static final Item PLATINUM_LEGGINS = registerItem("platinum_leggings",
+            new ArmorItem(ModArmorMaterials.PLATINUM, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(tummmItemPages.TOOLS)));
+    public static final Item PLATINUM_BOOTS = registerItem("platinum_boots",
+            new ArmorItem(ModArmorMaterials.PLATINUM, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(tummmItemPages.TOOLS)));
+
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registry.ITEM, new Identifier(MainTummm.MODID, name),item);
