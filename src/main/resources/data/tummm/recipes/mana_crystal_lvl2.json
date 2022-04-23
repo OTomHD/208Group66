@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#Y#",
+    "YXY",
+    "#Y#"
+  ],
+  "key": {
+    "#": {
+      "item": "tummm:mana_crystal"
+    },
+    "X": {
+      "item": "tummm:infused_diamond"
+    },
+    "Y": {
+      "item": "tummm:platinum_ingot"
+    }
+  },
+  "result": {
+    "item": "tummm:mana_crystal_lvl2",
+    "count": 1
+  }
+}

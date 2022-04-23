@@ -1,6 +1,13 @@
 {
-  "itemGroup.tummm.main" : "Main Tummm Tab",
+  "itemGroup.tummm.blocks" : "Tummm Blocks",
+  "itemGroup.tummm.items" : "Tummm Items",
+  "itemGroup.tummm.tools" : "Tummm Tools",
+  "itemGroup.tummm.crystals" : "Tummm Crystals",
+
   "item.tummm.mana_crystal" : "Mana Crystal",
+  "item.tummm.mana_crystal_lvl2" : "Mana Crystal",
+  "item.tummm.mana_crystal_lvl3" : "Mana Crystal",
+  
   "item.tummm.mana_dust" : "Mana Dust",
   "item.tummm.platinum_ingot" : "Platinum Ingot",
   "item.tummm.platinum_nugget" : "Platinum Nugget",
@@ -13,7 +20,17 @@
   "item.tummm.platinum_shovel": "Platinum Shovel",
   "item.tummm.platinum_sword": "Platinum Sword",
 
+  "item.tummm.void_wand": "Void Wand",
+  "item.tummm.cloak_wand": "Cloaking Wand",
+  "item.tummm.fire_wand": "Fire Ball wand",
+  "item.tummm.exp_wand": "Experience Wand",
+  "item.tummm.lightning_wand": "Lightning Wand",
 
+  "item.tummm.void_wand.tooltip": "Void Wand",
+  "item.tummm.cloak_wand.tooltip": "Cloaking Wand",
+  "item.tummm.fire_wand.tooltip": "Fire Ball wand",
+  "item.tummm.exp_wand.tooltip": "Experience Wand",
+  "item.tummm.lightning_wand.tooltip": "Lightning Wand",
 
   "block.tummm.platinum_ore" : "Platinum Ore",
   "block.tummm.deepslate_platinum" : "Deepslate Platinum Ore",
