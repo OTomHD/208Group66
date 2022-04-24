@@ -44,6 +44,8 @@
   "block.tummm.magic_ore" : "Magic Ore",
   "block.tummm.deepslate_magic" : "Deepslate Magic Ore",
 
+  "block.tummm.angelic_flower" : "Angelic Flower",
+
   "item.tummm.magic_page": "Magic Page",
   "block.tummm.ritual_core" : "Ritual Core"
 }

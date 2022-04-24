@@ -5,8 +5,12 @@ import com.group66.tummm.items.tummmItemPages;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerBlock;
 import net.minecraft.block.Material;
 import net.minecraft.data.Main;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -30,6 +34,10 @@ public class tummmBlocks {
 
     public static final Block RITUAL_CORE = registerBlock("ritual_core",
             new ritual_core(FabricBlockSettings.of(Material.METAL).strength(6f).requiresTool()), tummmItemPages.BLOCKS);
+
+    public static final Block ANGELIC_FLOWER = registerBlock("angelic_flower",
+            new FlowerBlock(StatusEffects.REGENERATION, 10, FabricBlockSettings.copy(Blocks.DANDELION)
+                    .strength(1f).nonOpaque()), tummmItemPages.BLOCKS);
 
     private static Block registerBlock(String name, Block block, ItemGroup group){
         registerBlockItem(name, block, group);

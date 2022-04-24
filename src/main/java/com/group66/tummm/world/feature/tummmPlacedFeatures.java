@@ -4,8 +4,7 @@ import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.HeightmapPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.*;
 
 public class tummmPlacedFeatures {
 
@@ -18,4 +17,9 @@ public class tummmPlacedFeatures {
             PlacedFeatures.register("magic_ore_placed", tummmConfiguredFeatures.MAGIC_ORE,
                     tummmOreFeatures.modifiersWithCount(9,
                             HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-60), YOffset.aboveBottom(60))));
+
+    public static final RegistryEntry<PlacedFeature> ANGELIC_FLOWER_PLACED =
+            PlacedFeatures.register("angelic_flower_placed", tummmConfiguredFeatures.ANGELIC_FLOWER,
+                    RarityFilterPlacementModifier.of(20), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                    BiomePlacementModifier.of());
 }

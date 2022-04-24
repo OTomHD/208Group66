@@ -5,6 +5,7 @@ import com.group66.tummm.blocks.tummmBlocks;
 import net.minecraft.world.gen.feature.*;
 
 import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public class tummmConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> MAGIC_ORE =
             ConfiguredFeatures.register("magic_ore", Feature.ORE,
                     new OreFeatureConfig(OVERWORLD_MAGIC_ORES, 9));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> ANGELIC_FLOWER =
+            ConfiguredFeatures.register("angelic_flower", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(tummmBlocks.ANGELIC_FLOWER)))));
 
     public static void registerConfiguredFeatures() {
         MainTummm.LOGGER.info("Registering tummm configured features for" + MainTummm.MODID);

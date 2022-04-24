@@ -25,6 +25,9 @@
   "entrypoints": {
     "main": [
       "com.group66.tummm.MainTummm"
+    ],
+    "client": [
+      "com.group66.tummm.tummmClientMod"
     ]
   },
   "mixins": [
