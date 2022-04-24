@@ -91,6 +91,9 @@ public class tummmItems {
     public static final Item PLATINUM_SCANNER = registerItem("platinum_scanner",
             new PlatinumScanner(new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
+    public static final Item ANGELIC_APPLE = registerItem("angelic_apple",
+            new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(tummmFoodComponents.ANGELIC_APPLE)));
+
     public static final Item MAGIC_PAGE = registerItem("magic_page",
             new Item(new FabricItemSettings().group(ItemGroup.MISC)));
 

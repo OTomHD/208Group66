@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X",
+    "XY"
+  ],
+  "key": {
+    "#": {
+      "item": "tummm:mana_dust"
+    },
+    "X": {
+      "item": "tummm:angelic_flower"
+    },
+    "Y": {
+      "item": "minecraft:apple"
+    }
+  },
+  "result": {
+    "item": "tummm:angelic_apple",
+    "count": 1
+  }
+}
