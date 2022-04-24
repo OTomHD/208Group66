@@ -35,6 +35,9 @@ public class tummmItems {
     public static final Item WAND_EXP = registerItem("exp_wand",
             new tummmWandExp(new FabricItemSettings().group(tummmItemPages.TOOLS).maxCount(1)));
 
+    public static final Item WAND_HEALTH = registerItem("regen_wand",
+            new tummmWandHealth(new FabricItemSettings().group(tummmItemPages.TOOLS).maxCount(1)));
+
     public static final Item WAND_LIGHTNING = registerItem("lightning_wand",
             new tummmWandLightning(new FabricItemSettings().group(tummmItemPages.TOOLS).maxCount(1)));
 

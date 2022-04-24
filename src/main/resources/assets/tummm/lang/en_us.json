@@ -32,12 +32,14 @@
   "item.tummm.fire_wand": "Fire Ball wand",
   "item.tummm.exp_wand": "Experience Wand",
   "item.tummm.lightning_wand": "Lightning Wand",
+  "item.tummm.regen_wand": "Regeneration Wand",
 
   "item.tummm.void_wand.tooltip": "Void Wand",
   "item.tummm.cloak_wand.tooltip": "Cloaking Wand",
   "item.tummm.fire_wand.tooltip": "Fire Ball wand",
   "item.tummm.exp_wand.tooltip": "Experience Wand",
   "item.tummm.lightning_wand.tooltip": "Lightning Wand",
+  "item.tummm.regen_wand.tooltip": "Regeneration Wand",
 
   "block.tummm.platinum_ore" : "Platinum Ore",
   "block.tummm.deepslate_platinum" : "Deepslate Platinum Ore",
