@@ -8,6 +8,7 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -170,6 +171,7 @@ public class ritual_core extends Block{
                         //livingEntity.setMovementSpeed(2000);
                     } else if (state.get(TRAP_TYPE) == 1) {
                         livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 100));
+                        //StatusEffects.RESISTANCE
                         //entityAttributeInstance.clearModifiers();
                         entity.damage(DamageSource.MAGIC, 1.0F);
                     } else if (state.get(TRAP_TYPE) == 2) {
@@ -197,7 +199,19 @@ public class ritual_core extends Block{
         EntityAttributeInstance resistance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR); //idk
         EntityAttributeInstance maxHP = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
         EntityAttributeInstance damage = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-        EntityAttributeInstance attackSpeed = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED);
+        StatusEffectInstance regen = new StatusEffectInstance(StatusEffects.REGENERATION, 9999999, 10);
+        StatusEffectInstance resist = new StatusEffectInstance(StatusEffects.RESISTANCE, 9999999, 10);
+
+        regen.setPermanent(true);
+        resist.setPermanent(true);
+
+
+        livingEntity.addStatusEffect(resist);
+        EntityAttributeInstance attackSpeed = null;
+
+        if(livingEntity instanceof PlayerEntity) {
+             attackSpeed = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED);
+        }
         EntityAttributeModifier TRANSCENDENCE = FIRST_TRANCENDENCE;
 
         MainTummm.LOGGER.info("inside thing " + String.valueOf(maxHP.getValue()));
@@ -221,25 +235,37 @@ public class ritual_core extends Block{
 
         MainTummm.LOGGER.info("Multiplier: "+ String.valueOf(TRANSCENDENCE.getValue()) + " Level: " + TRANSCENDENCE.getName());
         clearModifiers(livingEntity);
+        //livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 99, 3));
+        livingEntity.addStatusEffect(resist);
+        livingEntity.addStatusEffect(regen);
         moveSpeed.addPersistentModifier(TRANSCENDENCE);
         resistance.addPersistentModifier(TRANSCENDENCE);
         maxHP.addPersistentModifier(TRANSCENDENCE);
         damage.addPersistentModifier(TRANSCENDENCE);
-        attackSpeed.addPersistentModifier(TRANSCENDENCE);
+        //livingEntity.
+        if(livingEntity instanceof PlayerEntity) {
+            attackSpeed.addPersistentModifier(TRANSCENDENCE);
+        }
     }
 
     public void clearModifiers(LivingEntity livingEntity){
         EntityAttributeInstance moveSpeed = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-        EntityAttributeInstance resistance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS); //idk
+        EntityAttributeInstance resistance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR); //idk
         EntityAttributeInstance maxHP = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
         EntityAttributeInstance damage = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-        EntityAttributeInstance attackSpeed = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED);
+        livingEntity.removeStatusEffect(StatusEffects.RESISTANCE);
+        livingEntity.removeStatusEffect(StatusEffects.REGENERATION);
+
+        if(livingEntity instanceof PlayerEntity) {
+            EntityAttributeInstance attackSpeed = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED);
+            attackSpeed.clearModifiers();
+        }
 
         moveSpeed.clearModifiers();
         resistance.clearModifiers();
         maxHP.clearModifiers();
         damage.clearModifiers();
-        attackSpeed.clearModifiers();
+
     }
 
     @Override
@@ -278,6 +304,6 @@ public class ritual_core extends Block{
         FIRST_TRANCENDENCE = new EntityAttributeModifier("First Transcendence", 0.2D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
         SECOND_TRANCENDENCE = new EntityAttributeModifier("Second Transcendence", 0.4D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
         THIRD_TRANCENDENCE = new EntityAttributeModifier("Third Transcendence", 1D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-        FOURTH_TRANCENDENCE = new EntityAttributeModifier("Fourth Transcendence", 3D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+        FOURTH_TRANCENDENCE = new EntityAttributeModifier("Fourth Transcendence", 40D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 }
