@@ -78,7 +78,7 @@ public class tummmItems {
                     new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
     public static final Item PLATINUM_HELMET = registerItem("platinum_helmet",
-            new ArmorItem(ModArmorMaterials.PLATINUM, EquipmentSlot.HEAD,
+            new ModArmorItem(ModArmorMaterials.PLATINUM, EquipmentSlot.HEAD,
                     new FabricItemSettings().group(tummmItemPages.TOOLS)));
     public static final Item PLATINUM_CHESTPLATE = registerItem("platinum_chestplate",
             new ArmorItem(ModArmorMaterials.PLATINUM, EquipmentSlot.CHEST,
