@@ -35,12 +35,12 @@
   "item.tummm.lightning_wand": "Lightning Wand",
   "item.tummm.regen_wand": "Regeneration Wand",
 
-  "item.tummm.void_wand.tooltip": "Void Wand",
-  "item.tummm.cloak_wand.tooltip": "Cloaking Wand",
-  "item.tummm.fire_wand.tooltip": "Fire Ball wand",
-  "item.tummm.exp_wand.tooltip": "Experience Wand",
-  "item.tummm.lightning_wand.tooltip": "Lightning Wand",
-  "item.tummm.regen_wand.tooltip": "Regeneration Wand",
+  "item.tummm.void_wand.tooltip": "Right-Click on block to set pos, Right-Click entity or air to teleport entity and self",
+  "item.tummm.cloak_wand.tooltip": "Right-Click to toggle visability",
+  "item.tummm.fire_wand.tooltip": "Right-Click on floor to spawn fireball",
+  "item.tummm.exp_wand.tooltip": "Right-Click to gain an experience level",
+  "item.tummm.lightning_wand.tooltip": "Right-Click to summon lightning bolt",
+  "item.tummm.regen_wand.tooltip": "Right-Click to give self Regeneration",
 
   "block.tummm.platinum_ore" : "Platinum Ore",
   "block.tummm.deepslate_platinum" : "Deepslate Platinum Ore",

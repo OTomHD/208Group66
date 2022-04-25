@@ -20,7 +20,6 @@ public class tummmWandCloak extends tummmWand{
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-
         if(user.isInvisible()){
             user.setInvisible(false);
             return super.use(world, user, hand);
