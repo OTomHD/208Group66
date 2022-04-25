@@ -43,6 +43,10 @@ public class ritual_core extends Block{
     public static final EntityAttributeModifier SECOND_TRANCENDENCE;
     public static final EntityAttributeModifier THIRD_TRANCENDENCE;
     public static final EntityAttributeModifier FOURTH_TRANCENDENCE;
+    public static final EntityAttributeModifier DAMAGE_TRANCENDENCE_FIRST;
+    public static final EntityAttributeModifier DAMAGE_TRANCENDENCE_SECOND;
+    public static final EntityAttributeModifier DAMAGE_TRANCENDENCE_THIRD;
+    public static final EntityAttributeModifier DAMAGE_TRANCENDENCE_FOURTH;
     //public static final EnumProperty TRAP_SET = EnumProperty.of("ritual_core", int.class.getClass());
 
     public ritual_core(Settings settings) {
@@ -233,30 +237,31 @@ public class ritual_core extends Block{
         EntityAttributeInstance resistance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR); //idk
         EntityAttributeInstance maxHP = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
         EntityAttributeInstance damage = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-        StatusEffectInstance regen = new StatusEffectInstance(StatusEffects.REGENERATION, 9999999, 10);
-        StatusEffectInstance resist = new StatusEffectInstance(StatusEffects.RESISTANCE, 9999999, 10);
-
-        regen.setPermanent(true);
-        resist.setPermanent(true);
+        StatusEffectInstance regen;// = new StatusEffectInstance(StatusEffects.REGENERATION, 9999999, 10);
+        StatusEffectInstance resist;// = new StatusEffectInstance(StatusEffects.RESISTANCE, 9999999, 10);
 
 
-        livingEntity.addStatusEffect(resist);
+        //livingEntity.addStatusEffect(resist);
         EntityAttributeInstance attackSpeed = null;
 
         if(livingEntity instanceof PlayerEntity) {
              attackSpeed = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED);
         }
         EntityAttributeModifier TRANSCENDENCE = FIRST_TRANCENDENCE;
+        EntityAttributeModifier DMG_TRANSCENDENCE = DAMAGE_TRANCENDENCE_FIRST;
 
         MainTummm.LOGGER.info("inside thing " + String.valueOf(maxHP.getValue()));
         int maxHPValue = (int) maxHP.getValue();
 
         if(maxHPValue == 20){
             TRANSCENDENCE = SECOND_TRANCENDENCE;
+            DMG_TRANSCENDENCE = DAMAGE_TRANCENDENCE_SECOND;
         }else if(maxHPValue == 28){
-            TRANSCENDENCE = THIRD_TRANCENDENCE;
+            TRANSCENDENCE = THIRD_TRANCENDENCE;;
+            DMG_TRANSCENDENCE = DAMAGE_TRANCENDENCE_THIRD;
         }else if(maxHPValue == 40){
             TRANSCENDENCE = FOURTH_TRANCENDENCE;
+            DMG_TRANSCENDENCE = DAMAGE_TRANCENDENCE_FOURTH;
         }else {
             MainTummm.LOGGER.info("Error "+String.valueOf(maxHPValue));
         }
@@ -270,12 +275,17 @@ public class ritual_core extends Block{
         MainTummm.LOGGER.info("Multiplier: "+ String.valueOf(TRANSCENDENCE.getValue()) + " Level: " + TRANSCENDENCE.getName());
         clearModifiers(livingEntity);
         //livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 99, 3));
+        regen = new StatusEffectInstance(StatusEffects.REGENERATION, 9999999, (int) Math.ceil(TRANSCENDENCE.getValue()*2));
+        resist = new StatusEffectInstance(StatusEffects.RESISTANCE, 9999999, (int) Math.ceil(TRANSCENDENCE.getValue()*2));
+        regen.setPermanent(true);
+        resist.setPermanent(true);
+
         livingEntity.addStatusEffect(resist);
         livingEntity.addStatusEffect(regen);
         moveSpeed.addPersistentModifier(TRANSCENDENCE);
         resistance.addPersistentModifier(TRANSCENDENCE);
         maxHP.addPersistentModifier(TRANSCENDENCE);
-        damage.addPersistentModifier(TRANSCENDENCE);
+        damage.addPersistentModifier(DMG_TRANSCENDENCE);
         //livingEntity.
         if(livingEntity instanceof PlayerEntity) {
             attackSpeed.addPersistentModifier(TRANSCENDENCE);
@@ -338,6 +348,11 @@ public class ritual_core extends Block{
         FIRST_TRANCENDENCE = new EntityAttributeModifier("First Transcendence", 0.2D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
         SECOND_TRANCENDENCE = new EntityAttributeModifier("Second Transcendence", 0.4D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
         THIRD_TRANCENDENCE = new EntityAttributeModifier("Third Transcendence", 1D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-        FOURTH_TRANCENDENCE = new EntityAttributeModifier("Fourth Transcendence", 40D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+        FOURTH_TRANCENDENCE = new EntityAttributeModifier("Fourth Transcendence", 4D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+
+        DAMAGE_TRANCENDENCE_FIRST = new EntityAttributeModifier("First Transcendence dmg", 4D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+        DAMAGE_TRANCENDENCE_SECOND = new EntityAttributeModifier("Second Transcendence dmg", 8D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+        DAMAGE_TRANCENDENCE_THIRD = new EntityAttributeModifier("Third Transcendence dmg", 12D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+        DAMAGE_TRANCENDENCE_FOURTH = new EntityAttributeModifier("Fourth Transcendence dmg", 20D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 }
