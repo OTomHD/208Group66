@@ -134,7 +134,7 @@ public class ritual_core extends Block{
             String bookInHand = player.getStackInHand(hand).getName().toString();//.contains("Tummmonicon Vol. 1");
             String command = null;
             if (bookInHand.contains("air")){
-                command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\\\\n \"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith thi\\\\n\\\\n(The book appears to be torn)\"}'],title:\"Tummmonicon Vol. 1\",author:Herobrine}";
+                command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\\\\n \"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith thi\\\\n\\\\n(The book appears to be torn)\"}'],title:\"Tummmonomicon Vol. 1\",author:Herobrine}";
             }else if(bookInHand.contains("Vol. 1")){
                 command ="/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith this, you are ready to start your journey to enlightenment.\\\\n\\\\nFrom here you are going to learn and experiment with rituals. You should try throwing different items and combinations\"}','{\"text\":\"onto the altar, maybe even this book...\\\\n\\\\nThe results of this may vary, some may be beneficial, some dangerous. it is up to you to experiment.\\\\n\\\\nA good starting point may be to place a fermented spider eye on the altar and use your mana crystal.\\\\n\\\\n \"}','{\"text\":\"Once you have gotten the hang of this I hope you have some resources left over as next you will be crafting wands.\\\\n\\\\nTo d\\\\n\\\\n(The rest of the book appears torn)\\\\n\\\\n \"}'],title:\"Tummmonomicon Vol. 2\",author:Herobrine}";
             }else if(bookInHand.contains("Vol. 2")){
@@ -146,7 +146,9 @@ public class ritual_core extends Block{
             }
             if(command != null) {
                 runCommand(world, command, pos);
-                player.getStackInHand(hand).decrement(1);
+                if (!bookInHand.contains("air")) {
+                    player.getStackInHand(hand).decrement(1);
+                }
                 world.setBlockState(pos, state.with(TRAP_TYPE, 0), Block.NOTIFY_ALL);
             }
         }
@@ -315,7 +317,9 @@ public class ritual_core extends Block{
         moveSpeed.addPersistentModifier(TRANSCENDENCE);
         resistance.addPersistentModifier(TRANSCENDENCE);
         maxHP.addPersistentModifier(TRANSCENDENCE);
-        damage.addPersistentModifier(DMG_TRANSCENDENCE);
+        if(damage != null) {
+            damage.addPersistentModifier(DMG_TRANSCENDENCE);
+        }
         //livingEntity.
         if(livingEntity instanceof PlayerEntity) {
             attackSpeed.addPersistentModifier(TRANSCENDENCE);
@@ -350,8 +354,9 @@ public class ritual_core extends Block{
         moveSpeed.clearModifiers();
         resistance.clearModifiers();
         maxHP.clearModifiers();
-        damage.clearModifiers();
-
+        if(damage != null) {
+            damage.clearModifiers();
+        }
     }
 
     @Override
