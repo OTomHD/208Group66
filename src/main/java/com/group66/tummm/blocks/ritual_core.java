@@ -78,6 +78,9 @@ public class ritual_core extends Block{
             player.sendMessage(new LiteralText("Working"), false);
             MainTummm.LOGGER.info((String.valueOf(state.get(TRAP_TYPE))));
             MainTummm.LOGGER.info(player.getStackInHand(hand).toString());
+            if(player.getStackInHand(hand).getName().toString().contains("Tummmonicon Vol. 1")) {
+                MainTummm.LOGGER.info("Its the book");
+            }
             MainTummm.LOGGER.info(state.get(TRAP_SET).toString());
             world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
         }
@@ -93,6 +96,25 @@ public class ritual_core extends Block{
                 //world.setBlockState(pos, (BlockState)state.with(TRAP_TYPE, 0), Block.NOTIFY_ALL);
             }
             //trapSet = 1;
+        }else if((!world.isClient()) && state.get(TRAP_TYPE) == 13){
+            String bookInHand = player.getStackInHand(hand).getName().toString();//.contains("Tummmonicon Vol. 1");
+            String command = null;
+            if (bookInHand.contains("air")){
+                command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\\\\n \"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith thi\\\\n\\\\n(The book appears to be torn)\"}'],title:\"Tummmonicon Vol. 1\",author:Herobrine}";
+            }else if(bookInHand.contains("Vol. 1")){
+                command ="/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith this, you are ready to start your journey to enlightenment.\\\\n\\\\nFrom here you are going to learn and experiment with rituals. You should try throwing different items and combinations\"}','{\"text\":\"onto the altar, maybe even this book...\\\\n\\\\nThe results of this may vary, some may be beneficial, some dangerous. it is up to you to experiment.\\\\n\\\\nA good starting point may be to place a fermented spider eye on the altar and use your mana crystal.\\\\n\\\\n \"}','{\"text\":\"Once you have gotten the hang of this I hope you have some resources left over as next you will be crafting wands.\\\\n\\\\nTo d\\\\n\\\\n(The rest of the book appears torn)\\\\n\\\\n \"}'],title:\"Tummmonomicon Vol. 2\",author:Herobrine}";
+            }else if(bookInHand.contains("Vol. 2")){
+                command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith this, you are ready to start your journey to enlightenment.\\\\n\\\\nFrom here you are going to learn and experiment with rituals. You should try throwing different items and combinations\"}','{\"text\":\"onto the altar, maybe even this book...\\\\n\\\\nThe results of this may vary, some may be beneficial, some dangerous. it is up to you to experiment.\\\\n\\\\nA good starting point may be to place a fermented spider eye on the altar and use your mana crystal.\"}','{\"text\":\"Once you have gotten the hang of this I hope you have some resources left over as next you will be crafting wands.\\\\n\\\\nTo do this is quite simple, simply place two suitable sticks diagonally with a fitting object.\"}','{\"text\":\"While I leave the experimentation to you, a suggestion may be to try some of the harder to come by objects in this, a fire charge perhaps?\\\\n\\\\nWhen you have yourself a functional wand, you should hold both your crystal and the wand in order to make use of it.\\\\n \"}','{\"text\":\"With all this you are ready to take the next step...\\\\n\\\\n(The book is torn once again)\\\\n \"}'],title:\"Tummmonomicon Vol. 3\",author:Herobrine}";
+            }else if(bookInHand.contains("Vol. 3")){
+                command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith this, you are ready to start your journey to enlightenment.\\\\n\\\\nFrom here you are going to learn and experiment with rituals. You should try throwing different items and combinations\"}','{\"text\":\"onto the altar, maybe even this book...\\\\n\\\\nThe results of this may vary, some may be beneficial, some dangerous. it is up to you to experiment.\\\\n\\\\nA good starting point may be to place a fermented spider eye on the altar and use your mana crystal.\"}','{\"text\":\"Once you have gotten the hang of this I hope you have some resources left over as next you will be crafting wands.\\\\n\\\\nTo do this is quite simple, simply place two suitable sticks diagonally with a fitting object.\"}','{\"text\":\"While I leave the experimentation to you, a suggestion may be to try some of the harder to come by objects in this, a fire charge perhaps?\\\\n\\\\nWhen you have yourself a functional wand, you should hold both your crystal and the wand in order to make use of it.\\\\n \"}','{\"text\":\"With all this you are ready to take the next step...\\\\n\\\\n \"}','{\"text\":\"In your experimentation, you may have noticed your mana crystal being unable to keep up with you and its mana draining.\\\\n\\\\nTo remedy this, it is possible to upgrade the crystal. However, this is not cheap. This can be done twice and will require the previous tier of\"}','{\"text\":\"crystal and will use a similar process to the original, with any glass being replaced with infused diamonds.\\\\n\\\\n(Another torn page...)\"}'],title:\"Tummmonomicon Vol. 4\",author:Herobrine}";
+            }else if (bookInHand.contains("Vol. 4")){
+                command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith this, you are ready to start your journey to enlightenment.\\\\n\\\\nFrom here you are going to learn and experiment with rituals. You should try throwing different items and combinations\"}','{\"text\":\"onto the altar, maybe even this book...\\\\n\\\\nThe results of this may vary, some may be beneficial, some dangerous. it is up to you to experiment.\\\\n\\\\nA good starting point may be to place a fermented spider eye on the altar and use your mana crystal.\"}','{\"text\":\"Once you have gotten the hang of this I hope you have some resources left over as next you will be crafting wands.\\\\n\\\\nTo do this is quite simple, simply place two suitable sticks diagonally with a fitting object.\"}','{\"text\":\"While I leave the experimentation to you, a suggestion may be to try some of the harder to come by objects in this, a fire charge perhaps?\\\\n\\\\nWhen you have yourself a functional wand, you should hold both your crystal and the wand in order to make use of it.\\\\n \"}','{\"text\":\"With all this you are ready to take the next step...\\\\n\\\\n \"}','{\"text\":\"In your experimentation, you may have noticed your mana crystal being unable to keep up with you and its mana draining.\\\\n\\\\nTo remedy this, it is possible to upgrade the crystal. However, this is not cheap. This can be done twice and will require the previous tier of\"}','{\"text\":\"crystal and will use a similar process to the original, with any glass being replaced with infused diamonds.\\\\n\\\\n \"}','{\"text\":\"Now that you have made it this far you are ready for ascension.\\\\n\\\\nYou may have noticed a special occurence when using a golden apple with the ritual core. Each tier of the mana crystal provides a different benefit, so try them all. With all this you can become unstoppable...\\\\n \"}'],title:\"Tummmonomicon Vol. 5\",author:Herobrine}";
+            }
+            if(command != null) {
+                runCommand(world, command, pos);
+                player.getStackInHand(hand).decrement(1);
+                world.setBlockState(pos, state.with(TRAP_TYPE, 0), Block.NOTIFY_ALL);
+            }
         }
 
         return ActionResult.SUCCESS;
@@ -101,8 +123,11 @@ public class ritual_core extends Block{
     //Collision with sides as well
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        //MainTummm.LOGGER.info(entity.getName().getString());
         if(!world.isClient()) {
+            //MainTummm.LOGGER.info(entity.getName().getString());
+            //MainTummm.LOGGER.info(entity.getDisplayName().toString());
+            //world.get
+            //MainTummm.LOGGER.info(entity.get);
             if (!state.get(TRAP_SET)) {  //Trap is not set
                 if ((entity.getName().getString().equals("Fermented Spider Eye")) && !state.get(TRAP_SET)) {
                     world.setBlockState(pos, state.with(TRAP_TYPE, 1), Block.NOTIFY_ALL);
@@ -127,32 +152,18 @@ public class ritual_core extends Block{
                     MainTummm.LOGGER.info("Swapping to remove powers");
                     entity.discard();
                 }
-                if (entity.getName().getString().equals("Paper")){
+                if (entity.getName().getString().equals("Magic Page")){
+                    MainTummm.LOGGER.info("Swapping book mode");
+                    world.setBlockState(pos, state.with(TRAP_TYPE, 13), Block.NOTIFY_ALL);
                     //MinecraftServer minecraftServer = world.getServer();
                     //CommandOutput com =
                     //ServerCommandSource sev = new ServerCommandSource();
-                    CommandBlockExecutor cmd = new CommandBlockExecutor() {
 
-                        public ServerWorld getWorld() {
-                            return world.getServer().getWorld(world.getRegistryKey());
-                        }
-
-                        public void markDirty() {
-                            BlockState blockState = world.getBlockState(pos);
-                            this.getWorld().updateListeners(pos, blockState, blockState, 3);
-                        }
-
-                        public Vec3d getPos() {return Vec3d.ofCenter(pos);}
-
-                        public ServerCommandSource getSource() {
-                            return new ServerCommandSource(this, Vec3d.ofCenter(pos), Vec2f.ZERO, this.getWorld(), 2, this.getCustomName().getString(), this.getCustomName(), this.getWorld().getServer(), null);
-                        }
-                    };
-                    String command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\\\\n \"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith thi\\\\n\\\\n(The book appears to be torn)\"}'],title:\"Tummmonicon Vol. 1\",author:Herobrine}";
-                    cmd.setCommand(command);
-                    cmd.execute(world);
                     entity.discard();
                     //minecraftServer.getCommandManager().execute(this, command);
+                }
+                if (state.get(TRAP_TYPE) == 13){
+                    String bookInHand = entity.getName().toString();
                 }
             } else { //TRAP is set
                 if ((entity instanceof LivingEntity)) {
@@ -192,6 +203,29 @@ public class ritual_core extends Block{
                 }
             }
         }
+    }
+
+    public void runCommand(World world, String command, BlockPos pos){
+        CommandBlockExecutor cmd = new CommandBlockExecutor() {
+
+            public ServerWorld getWorld() {
+                return world.getServer().getWorld(world.getRegistryKey());
+            }
+
+            public void markDirty() {
+                BlockState blockState = world.getBlockState(pos);
+                this.getWorld().updateListeners(pos, blockState, blockState, 3);
+            }
+
+            public Vec3d getPos() {return Vec3d.ofCenter(pos);}
+
+            public ServerCommandSource getSource() {
+                return new ServerCommandSource(this, Vec3d.ofCenter(pos), Vec2f.ZERO, this.getWorld(), 2, this.getCustomName().getString(), this.getCustomName(), this.getWorld().getServer(), null);
+            }
+        };
+        //String command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\\\\n \"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith thi\\\\n\\\\n(The book appears to be torn)\"}'],title:\"Tummmonicon Vol. 1\",author:Herobrine}";
+        cmd.setCommand(command);
+        cmd.execute(world);
     }
 
     public void augmentAbilities(LivingEntity livingEntity){
