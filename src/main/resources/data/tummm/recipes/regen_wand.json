@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "item": "tummm:angelic_apple"
+      "item": "minecraft:stick"
     },
     "X": {
-      "item": "minecraft:golden_carrot"
+      "item": "tummm:angelic_apple"
     }
   },
   "result": {
