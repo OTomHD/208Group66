@@ -24,7 +24,6 @@ public class PlatinumScanner extends Item {
 
             for(int i = 0; i <= positionClicked.getY(); i++) {
                 Block blockBelow = context.getWorld().getBlockState(positionClicked.down(i)).getBlock();
-
                 if(isPlatinum(blockBelow)) {
                     outputPlatinumFound(player);
                     foundBlock = true;
@@ -44,7 +43,7 @@ public class PlatinumScanner extends Item {
     }
 
     private void outputPlatinumFound(PlayerEntity player) {
-        player.sendMessage(new LiteralText("Found platinum underground!"), false);
+        player.sendMessage(new LiteralText("Found platinum!"), false);
     }
 
     private boolean isPlatinum(Block block) {

@@ -74,7 +74,11 @@ public class tummmItems {
                     new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
     public static final Item PLATINUM_SWORD = registerItem("platinum_sword",
-            new tummmSwordItem(tummmToolMaterials.PLATINUM, 2,1.5f,
+            new tummmSwordItem(tummmToolMaterials.PLATINUM, 2,1f,
+                    new FabricItemSettings().group(tummmItemPages.TOOLS)));
+
+    public static final Item PLATINUM_SCYTHE = registerItem("platinum_scythe",
+            new tummmScytheItem(tummmToolMaterials.PLATINUM, 3, 0.5f,
                     new FabricItemSettings().group(tummmItemPages.TOOLS)));
 
     public static final Item PLATINUM_HELMET = registerItem("platinum_helmet",

@@ -10,7 +10,7 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum tummmToolMaterials implements ToolMaterial {
-    PLATINUM(2, 250, 6.0F, 2.0F, 18, () -> {
+    PLATINUM(2, 250, 3.0F, 2.0F, 18, () -> {
         return Ingredient.ofItems(new ItemConvertible[]{tummmItems.PLATINUM_INGOT});
     });
 
