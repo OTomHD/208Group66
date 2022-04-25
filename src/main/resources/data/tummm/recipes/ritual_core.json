@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MXM",
+    "XMX",
+    "MXM"
+  ],
+  "key": {
+    "M": {
+      "item": "tummm:mana_dust"
+    },
+    "X": {
+      "item": "minecraft:black_wool"
+    }
+  },
+  "result": {
+    "item": "tummm:ritual_core"
+  }
+}

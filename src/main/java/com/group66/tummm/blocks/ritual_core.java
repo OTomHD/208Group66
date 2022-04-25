@@ -86,7 +86,7 @@ public class ritual_core extends Block{
         double f = (double)pos.getZ() + 0.5D;
 
         if((!world.isClient() && hand == hand.MAIN_HAND)) {
-            player.sendMessage(new LiteralText("Working"), false);
+            //player.sendMessage(new LiteralText("Working"), false);
             MainTummm.LOGGER.info((String.valueOf(state.get(TRAP_TYPE))));
             MainTummm.LOGGER.info(player.getStackInHand(hand).toString());
             if(player.getStackInHand(hand).getName().toString().contains("Tummmonicon Vol. 1")) {
