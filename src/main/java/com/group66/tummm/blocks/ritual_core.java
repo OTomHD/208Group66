@@ -1,9 +1,11 @@
 package com.group66.tummm.blocks;
 
 import com.group66.tummm.MainTummm;
+import com.group66.tummm.items.custom.tummmManaCrystal;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.goal.TrackOwnerAttackerGoal;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -12,6 +14,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
@@ -30,8 +33,12 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.CommandBlockExecutor;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import org.lwjgl.system.CallbackI;
 
 import java.util.Random;
+
+import static net.minecraft.util.Hand.MAIN_HAND;
+import static net.minecraft.util.Hand.OFF_HAND;
 
 public class ritual_core extends Block{
     protected static final VoxelShape COLLISION_SHAPE;
@@ -88,13 +95,36 @@ public class ritual_core extends Block{
             MainTummm.LOGGER.info(state.get(TRAP_SET).toString());
             world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
         }
-        if((!world.isClient()) && player.getStackInHand(hand).toString().contains("mana_crystal")) {
+        if((!world.isClient()) && player.getStackInHand(hand).getItem() instanceof tummmManaCrystal) {
+            MainTummm.LOGGER.info("Test 1");
             if(!state.get(TRAP_SET)) {
-                player.sendMessage(new LiteralText("You have set the trap"), false);
-                world.setBlockState(pos, state.with(TRAP_SET, true), Block.NOTIFY_ALL);
-                OWNER = player;
+                if((state.get(TRAP_TYPE) < 10 || state.get(TRAP_TYPE) == 15) && hasMana(player, 150)) {
+                    player.sendMessage(new LiteralText("You have set the trap"), false);
+                    world.setBlockState(pos, state.with(TRAP_SET, true), Block.NOTIFY_ALL);
+                    OWNER = player;
+                }else if(state.get(TRAP_TYPE) == 10){
+                    if (player.getMaxHealth() == 20.0){
+                        if(hasMana(player, 300)){
+                            player.sendMessage(new LiteralText("Transcendence Prepared"), false);
+                            world.setBlockState(pos, state.with(TRAP_SET, true), Block.NOTIFY_ALL);
+                            OWNER = player;
+                        }
+                    }else if(player.getMaxHealth() == 28.0){
+                        if(hasMana(player, 600)){
+                            player.sendMessage(new LiteralText("Transcendence Prepared"), false);
+                            world.setBlockState(pos, state.with(TRAP_SET, true), Block.NOTIFY_ALL);
+                            OWNER = player;
+                        }
+                    }else if(player.getMaxHealth() == 40.0){
+                        if(hasMana(player, 1000)){
+                            player.sendMessage(new LiteralText("Transcendence Prepared"), false);
+                            world.setBlockState(pos, state.with(TRAP_SET, true), Block.NOTIFY_ALL);
+                            OWNER = player;
+                        }
+                    }
+                }
             }
-            else{
+            else if(hasMana(player, 150)){
                 player.sendMessage(new LiteralText("You have deactivated the ritual"), false);
                 world.setBlockState(pos, state.with(TRAP_SET, false).with(TRAP_TYPE, 0), Block.NOTIFY_ALL);
                 //world.setBlockState(pos, (BlockState)state.with(TRAP_TYPE, 0), Block.NOTIFY_ALL);
@@ -290,6 +320,18 @@ public class ritual_core extends Block{
         if(livingEntity instanceof PlayerEntity) {
             attackSpeed.addPersistentModifier(TRANSCENDENCE);
         }
+    }
+
+    public boolean hasMana(PlayerEntity player, int manaCost){
+        ItemStack stack = player.getStackInHand(MAIN_HAND);
+        MainTummm.LOGGER.info("Max damage"+stack.getMaxDamage());
+        MainTummm.LOGGER.info("get damage"+stack.getDamage());
+        if (stack.getMaxDamage()-stack.getDamage() > manaCost+1){
+            stack.damage(manaCost, player, (p -> p.sendToolBreakStatus(MAIN_HAND)));
+            return true;
+        }
+
+        return false;
     }
 
     public void clearModifiers(LivingEntity livingEntity){
