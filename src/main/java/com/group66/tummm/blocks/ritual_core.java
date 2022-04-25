@@ -33,17 +33,15 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.CommandBlockExecutor;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
-import org.lwjgl.system.CallbackI;
 
 import java.util.Random;
 
 import static net.minecraft.util.Hand.MAIN_HAND;
-import static net.minecraft.util.Hand.OFF_HAND;
 
 public class ritual_core extends Block{
     protected static final VoxelShape COLLISION_SHAPE;
     protected static final VoxelShape OUTLINE_SHAPE;
-    public static final IntProperty TRAP_TYPE; //= IntProperty.of("ritual_core", 0, 1);
+    public static final IntProperty TRAP_TYPE;
     public static final BooleanProperty TRAP_SET;
     public static PlayerEntity OWNER;
     public static final EntityAttributeModifier FIRST_TRANCENDENCE;
@@ -54,7 +52,6 @@ public class ritual_core extends Block{
     public static final EntityAttributeModifier DAMAGE_TRANCENDENCE_SECOND;
     public static final EntityAttributeModifier DAMAGE_TRANCENDENCE_THIRD;
     public static final EntityAttributeModifier DAMAGE_TRANCENDENCE_FOURTH;
-    //public static final EnumProperty TRAP_SET = EnumProperty.of("ritual_core", int.class.getClass());
 
     public ritual_core(Settings settings) {
         super(settings);
@@ -86,7 +83,6 @@ public class ritual_core extends Block{
         double f = (double)pos.getZ() + 0.5D;
 
         if((!world.isClient() && hand == hand.MAIN_HAND)) {
-            //player.sendMessage(new LiteralText("Working"), false);
             MainTummm.LOGGER.info((String.valueOf(state.get(TRAP_TYPE))));
             MainTummm.LOGGER.info(player.getStackInHand(hand).toString());
             if(player.getStackInHand(hand).getName().toString().contains("Tummmonicon Vol. 1")) {
@@ -127,9 +123,7 @@ public class ritual_core extends Block{
             else if(hasMana(player, 150)){
                 player.sendMessage(new LiteralText("You have deactivated the ritual"), false);
                 world.setBlockState(pos, state.with(TRAP_SET, false).with(TRAP_TYPE, 0), Block.NOTIFY_ALL);
-                //world.setBlockState(pos, (BlockState)state.with(TRAP_TYPE, 0), Block.NOTIFY_ALL);
             }
-            //trapSet = 1;
         }else if((!world.isClient()) && state.get(TRAP_TYPE) == 13){
             String bookInHand = player.getStackInHand(hand).getName().toString();//.contains("Tummmonicon Vol. 1");
             String command = null;
@@ -160,10 +154,6 @@ public class ritual_core extends Block{
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if(!world.isClient()) {
-            //MainTummm.LOGGER.info(entity.getName().getString());
-            //MainTummm.LOGGER.info(entity.getDisplayName().toString());
-            //world.get
-            //MainTummm.LOGGER.info(entity.get);
             if (!state.get(TRAP_SET)) {  //Trap is not set
                 if ((entity.getName().getString().equals("Fermented Spider Eye")) && !state.get(TRAP_SET)) {
                     world.setBlockState(pos, state.with(TRAP_TYPE, 1), Block.NOTIFY_ALL);
@@ -177,7 +167,7 @@ public class ritual_core extends Block{
                     entity.discard();
                 }
 
-                if (entity.getName().getString().equals("Golden Apple")) {
+                if (entity.getName().getString().equals("Angelic Apple")) {
                     world.setBlockState(pos, state.with(TRAP_TYPE, 10), Block.NOTIFY_ALL);
                     MainTummm.LOGGER.info("Swapping to Transcend");
                     entity.discard();
@@ -191,12 +181,8 @@ public class ritual_core extends Block{
                 if (entity.getName().getString().equals("Magic Page")){
                     MainTummm.LOGGER.info("Swapping book mode");
                     world.setBlockState(pos, state.with(TRAP_TYPE, 13), Block.NOTIFY_ALL);
-                    //MinecraftServer minecraftServer = world.getServer();
-                    //CommandOutput com =
-                    //ServerCommandSource sev = new ServerCommandSource();
 
                     entity.discard();
-                    //minecraftServer.getCommandManager().execute(this, command);
                 }
                 if (state.get(TRAP_TYPE) == 13){
                     String bookInHand = entity.getName().toString();
@@ -205,35 +191,25 @@ public class ritual_core extends Block{
                 if ((entity instanceof LivingEntity)) {
                     MainTummm.LOGGER.info("Triggered");
                     LivingEntity livingEntity = ((LivingEntity) entity);
-                    /*EntityAttributeInstance moveSpeed = ((LivingEntity) entity).getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-                    EntityAttributeInstance resistance = ((LivingEntity) entity).getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS); //idk
-                    EntityAttributeInstance maxHP = ((LivingEntity) entity).getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
-                    EntityAttributeInstance damage = ((LivingEntity) entity).getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-                    EntityAttributeInstance attackSpeed = ((LivingEntity) entity).getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED);*/
 
                     if (state.get(TRAP_TYPE) == 0) {
                         livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 60, 3));
-                        //entityAttributeInstance.addPersistentModifier(TRANCENDENCE);
-                        //MainTummm.LOGGER.info(entityAttributeInstance.getAttribute().toString());
-                        //livingEntity.setMovementSpeed(2000);
                     } else if (state.get(TRAP_TYPE) == 1) {
                         livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 100));
-                        //StatusEffects.RESISTANCE
-                        //entityAttributeInstance.clearModifiers();
                         entity.damage(DamageSource.MAGIC, 1.0F);
                     } else if (state.get(TRAP_TYPE) == 2) {
                         world.createExplosion(OWNER, pos.getX(), pos.getY() + 2, pos.getZ(), 10, Explosion.DestructionType.DESTROY);
                     } else if (state.get(TRAP_TYPE) == 10) {
-                        MainTummm.LOGGER.info("They have become closer to accession");
-                        //MainTummm.LOGGER.info(String.valueOf(maxHP.getValue()));
-                        //clearModifiers(livingEntity);
-                        augmentAbilities(livingEntity);
-                        //MainTummm.LOGGER.info(String.valueOf(maxHP.getValue()));
-                    } else if (state.get(TRAP_TYPE) == 15) {
+                        if ((int)livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).getValue() < 45) {
+                            MainTummm.LOGGER.info("They have become closer to accession");
+                            augmentAbilities(livingEntity);
+                        }
+                    } else if (state.get(TRAP_TYPE) == 15) {  //Testing purpose only
                         MainTummm.LOGGER.info("They are cleansed");
                         clearModifiers(livingEntity);
                     }
 
+                    //resets the block
                     world.setBlockState(pos, state.with(TRAP_TYPE, 0), Block.NOTIFY_ALL);
                     world.setBlockState(pos, state.with(TRAP_SET, false), Block.NOTIFY_ALL);
                 }
@@ -241,6 +217,7 @@ public class ritual_core extends Block{
         }
     }
 
+    //Runs the command for getting better books
     public void runCommand(World world, String command, BlockPos pos){
         CommandBlockExecutor cmd = new CommandBlockExecutor() {
 
@@ -259,7 +236,6 @@ public class ritual_core extends Block{
                 return new ServerCommandSource(this, Vec3d.ofCenter(pos), Vec2f.ZERO, this.getWorld(), 2, this.getCustomName().getString(), this.getCustomName(), this.getWorld().getServer(), null);
             }
         };
-        //String command = "/give @p written_book{pages:['{\"text\":\"Upon your arrival in this world you have surely come across strange materials unlike any from your world.\\\\nKeep them.\\\\nThey are far more valuable than you may realise...\"}','{\"text\":\"Any further notes are my discoveries on the uses of this worlds strange, yet powerful, resources.\\\\nFirst of all, you need to find yourself some platinum, diamonds, and glass. The diamonds, in particular, should be infused with mana. A lot of it. With this diamond as the focus the other resources should be\\\\n \"}','{\"text\":\"used in conjuction to generate a new crystal.\\\\n\\\\nWith thi\\\\n\\\\n(The book appears to be torn)\"}'],title:\"Tummmonicon Vol. 1\",author:Herobrine}";
         cmd.setCommand(command);
         cmd.execute(world);
     }
@@ -269,13 +245,12 @@ public class ritual_core extends Block{
         EntityAttributeInstance resistance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR); //idk
         EntityAttributeInstance maxHP = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
         EntityAttributeInstance damage = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-        StatusEffectInstance regen;// = new StatusEffectInstance(StatusEffects.REGENERATION, 9999999, 10);
-        StatusEffectInstance resist;// = new StatusEffectInstance(StatusEffects.RESISTANCE, 9999999, 10);
+        StatusEffectInstance regen;
+        StatusEffectInstance resist;
 
-
-        //livingEntity.addStatusEffect(resist);
         EntityAttributeInstance attackSpeed = null;
 
+        //For mobs without attack speed
         if(livingEntity instanceof PlayerEntity) {
              attackSpeed = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED);
         }
@@ -285,6 +260,7 @@ public class ritual_core extends Block{
         MainTummm.LOGGER.info("inside thing " + String.valueOf(maxHP.getValue()));
         int maxHPValue = (int) maxHP.getValue();
 
+        //Checking transendence current level
         if(maxHPValue == 20){
             TRANSCENDENCE = SECOND_TRANCENDENCE;
             DMG_TRANSCENDENCE = DAMAGE_TRANCENDENCE_SECOND;
@@ -298,15 +274,8 @@ public class ritual_core extends Block{
             MainTummm.LOGGER.info("Error "+String.valueOf(maxHPValue));
         }
 
-        /*switch() {
-            case 24: TRANSCENDENCE = SECOND_TRANCENDENCE;
-            case 36: TRANSCENDENCE = THIRD_TRANCENDENCE;
-            case 42: TRANSCENDENCE = FOURTH_TRANCENDENCE;
-        }*/
-
         MainTummm.LOGGER.info("Multiplier: "+ String.valueOf(TRANSCENDENCE.getValue()) + " Level: " + TRANSCENDENCE.getName());
         clearModifiers(livingEntity);
-        //livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 99, 3));
         regen = new StatusEffectInstance(StatusEffects.REGENERATION, 9999999, (int) Math.ceil(TRANSCENDENCE.getValue()*2));
         resist = new StatusEffectInstance(StatusEffects.RESISTANCE, 9999999, (int) Math.ceil(TRANSCENDENCE.getValue()*2));
         regen.setPermanent(true);
@@ -320,12 +289,13 @@ public class ritual_core extends Block{
         if(damage != null) {
             damage.addPersistentModifier(DMG_TRANSCENDENCE);
         }
-        //livingEntity.
+        //For mobs without damage
         if(livingEntity instanceof PlayerEntity) {
             attackSpeed.addPersistentModifier(TRANSCENDENCE);
         }
     }
 
+    //Checks if they have enough mana in the crystal
     public boolean hasMana(PlayerEntity player, int manaCost){
         ItemStack stack = player.getStackInHand(MAIN_HAND);
         MainTummm.LOGGER.info("Max damage"+stack.getMaxDamage());
@@ -338,6 +308,7 @@ public class ritual_core extends Block{
         return false;
     }
 
+    //Removes potion effects and the base transendence modifiers
     public void clearModifiers(LivingEntity livingEntity){
         EntityAttributeInstance moveSpeed = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
         EntityAttributeInstance resistance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR); //idk
@@ -359,33 +330,14 @@ public class ritual_core extends Block{
         }
     }
 
+    //IDK but its needed
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(TRAP_TYPE);
         builder.add(TRAP_SET);
     }
 
-    /*@Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        MainTummm.LOGGER.info("Placed");
-        world.setBlockState(pos, (BlockState)state.with(trapSet, 0), Block.NOTIFY_ALL);
-    }*/
-
-    //collision only with landing
-    /*
-    @Override
-    public void onEntityLand(BlockView world, Entity entity) {
-        super.onEntityLand(world, entity);
-        if((entity instanceof LivingEntity) && trapSet == 1){
-            MainTummm.LOGGER.info("Triggered");
-            LivingEntity livingEntity = ((LivingEntity) entity);
-            livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 3));
-            entity.damage(DamageSource.MAGIC, 1.0F);
-            world.setBlockState(pos, (BlockState)state.with(trapSet, 0), Block.NOTIFY_ALL);
-        }
-    }*/
-
-    static {
+    static { //Initialising the variables
         COLLISION_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
         OUTLINE_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
